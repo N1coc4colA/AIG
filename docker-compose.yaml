@@ -1,0 +1,16 @@
+services:
+  aig-frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - aig-backend
+    env_file:
+      - .env
+
+  aig-backend:
+    build: ./backend
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
