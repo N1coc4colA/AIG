@@ -1,0 +1,82 @@
+.message {
+  max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.message.assistant {
+  background-color: #f0f0f0;
+  align-self: flex-start;
+}
+
+.message.user {
+  background: linear-gradient(to right, #08f 0%, #66ffb7 100%);
+  align-self: flex-end;
+}
+
+.blurry {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.header-overlay {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.6) 95%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.6) 95%, rgba(0, 0, 0, 0) 100%);
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: left top, left bottom;
+  -webkit-mask-position: left top, left bottom;
+}
+
+#navBar-container {
+  z-index: 2;
+}
+
+.soft-fixed-top {
+  position: relative;
+}
+
+.card-body textarea {
+  resize: none;
+}
+
+.content-view {
+  height: calc(calc(100%) - 200px - calc(1rem));
+  padding-bottom: calc(200px + 2*calc(1rem));
+}
+
+.input-area {
+  height: 200px;
+  max-height: 200px;
+}
+
+.roundit {
+  border-radius: 3px;
+}
+
+.img-gen {
+  border-radius: 5px;
+  border: 2px rgb(220, 220, 220) solid;
+}
+
+.recipe-card textarea {
+  max-height: 80px;
+}
