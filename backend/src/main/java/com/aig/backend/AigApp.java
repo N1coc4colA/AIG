@@ -6,6 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AigApp {
     public static void main(String[] args) {
-        AigApp.run(SpringAiApplication.class, args);
+        SpringApplication.run(AigApp.class, args);
     }
 }
