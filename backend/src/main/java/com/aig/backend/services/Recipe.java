@@ -3,8 +3,10 @@ package com.aig.backend.services;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.model.Media;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -30,7 +32,8 @@ public class Recipe implements IRecipeService {
                 "dietaryRestrictions", dietaryRestrictions
         );
 
-        Prompt prompt = promptTemplate.create(params);
-        return chatModel.call(prompt).getResult().getOutput().getContent();
+        final Prompt prompt = promptTemplate.create(params);
+
+        return utils.mediaToString(chatModel.call(prompt).getResult().getOutput().getMedia());
     }
 }

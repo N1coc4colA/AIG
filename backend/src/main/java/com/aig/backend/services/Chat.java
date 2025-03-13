@@ -3,8 +3,11 @@ package com.aig.backend.services;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.model.Media;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class Chat implements IChatService {
@@ -23,11 +26,11 @@ public class Chat implements IChatService {
                 new Prompt(
                         prompt,
                         OpenAiChatOptions.builder()
-                                .withModel("gpt-4o")
-                                .withTemperature(0.4F)
+                                .model("gpt-4o")
+                                .temperature(0.4)
                                 .build()
                 ));
 
-        return response.getResult().getOutput().getContent();
+        return utils.mediaToString(response.getResult().getOutput().getMedia());
     }
 }
