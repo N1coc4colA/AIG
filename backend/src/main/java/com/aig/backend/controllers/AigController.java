@@ -19,6 +19,10 @@ public class AigController {
     private final IRecipeService recipeService;
 
     public AigController(IChatService chatService, IImageService imageService, IRecipeService recipeService) {
+        assert(chatService != null);
+        assert(imageService != null);
+        assert(recipeService != null);
+
         this.chatService = chatService;
         this.imageService = imageService;
         this.recipeService = recipeService;
