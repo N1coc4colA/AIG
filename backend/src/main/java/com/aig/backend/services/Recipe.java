@@ -22,7 +22,7 @@ public class Recipe implements IRecipeService {
             I want to create a recipe using the following ingredients: {ingredients}.
             The cuisine type I prefer is {cuisine}.
             Please consider the following dietary restrictions: {dietaryRestrictions}.
-            Please provide me with a detailed recipe including title, list of ingredients, and cooking instructions
+            Please provide me with a detailed recipe including title, list of ingredients, and cooking instructions.
         """;
 
         PromptTemplate promptTemplate = new PromptTemplate(template);
