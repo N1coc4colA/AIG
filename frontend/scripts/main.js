@@ -31,17 +31,18 @@ function submitChat()
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        return response.data().toString();
+        return response.text();
     })
     .then(data => {
         const assMsg = document.createElement("div");
         assMsg.classList.add("message", "assistant");
         assMsg.innerText = data;
+        messages.appendChild(assMsg);
 
         return true;
     })
     .catch(error => {
-        document.getElementById("msg-" + msgId.toString()).add("failure");
+        document.getElementById("msg-" + msgId.toString()).classList.add("failure");
         console.error("Error in request:", error);
         return false;
     });
@@ -102,7 +103,7 @@ function generateRecipe()
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        return response.data().toString();
+        return response.text();
     })
     .then(data => {
         recipeArea.innerHTML = converter.makeHtml(data);
