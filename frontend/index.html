@@ -59,19 +59,7 @@
               <h1 class="mt-3">Generate images</h1>
             </div>
             <div class="container mt-4 content-view">
-              <div class="row g-3 justify-content-evenly">
-                <div class="col-10 col-md-5 col-xl img-gen p-0">
-                  <img src="assets/test.jpg" alt="Placeholder 1" class="img-fluid roundit" id="img-gen-0">
-                </div>
-                <div class="col-10 col-md-5 col-xl img-gen p-0">
-                  <img src="assets/test.jpg" alt="Placeholder 2" class="img-fluid roundit" id="img-gen-1">
-                </div>
-                <div class="col-10 col-md-5 col-xl img-gen p-0">
-                  <img src="assets/test.jpg" alt="Placeholder 3" class="img-fluid roundit" id="img-gen-2">
-                </div>
-                <div class="col-10 col-md-5 col-xl img-gen p-0">
-                  <img src="assets/test.jpg" alt="Placeholder 4" class="img-fluid roundit" id="img-gen-3">
-                </div>
+              <div class="row g-3 justify-content-evenly" id="imagingFlex">
               </div>
             </div>
             <div class="card shadow-sm m-3 fixed-bottom input-area">
@@ -80,7 +68,7 @@
                   <textarea class="form-control" id="img-inputArea" placeholder="Type your image prompt..." rows="4"></textarea>
                 </div>
                 <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-primary">Generate</button>
+                  <button onclick="generateImage()" class="btn btn-primary">Generate</button>
                 </div>
               </div>
             </div>
@@ -88,59 +76,7 @@
           <div class="col tab-pane show m-2 mb-0" id="chat" role="tabpanel" aria-labelledby="chat-tab">
             <h1 class="mb-1">Chatter</h1>
             <div id="messageArea" class="container mt-4 content-view">
-              <div class="d-flex flex-column" style="gap: 10px;">
-                <!-- User Message -->
-                <div class="message user">
-                  Hello! How can I help you today?
-                </div>
-                <!-- Assistant Message -->
-                <div class="message assistant">
-                  I have a question about Bootstrap layouts.
-                </div>
-                <!-- User Message -->
-                <div class="message user">
-                  Sure! What do you need assistance with?
-                </div>
-                <!-- Assistant Message -->
-                <div class="message assistant">
-                  How can I create a chat-like interface using Bootstrap?
-                  How can I create a chat-like interface using Bootstrap?
-                  How can I create a chat-like interface using Bootstrap?
-                  How can I create a chat-like interface using Bootstrap?
-                  How can I create a chat-like interface using Bootstrap?
-                </div>
-                <!-- User Message -->
-                <div class="message user">
-                  Hello! How can I help you today?
-                </div>
-                <!-- Assistant Message -->
-                <div class="message assistant">
-                  I have a question about Bootstrap layouts.
-                </div>
-                <!-- User Message -->
-                <div class="message user">
-                  Sure! What do you need assistance with?
-                </div>
-                <!-- Assistant Message -->
-                <div class="message assistant">
-                  How can I create a chat-like interface using Bootstrap?
-                </div>
-                <!-- User Message -->
-                <div class="message user">
-                  Hello! How can I help you today?
-                </div>
-                <!-- Assistant Message -->
-                <div class="message assistant">
-                  I have a question about Bootstrap layouts.
-                </div>
-                <!-- User Message -->
-                <div class="message user">
-                  Sure! What do you need assistance with?
-                </div>
-                <!-- Assistant Message -->
-                <div class="message assistant">
-                  How can I create a chat-like interface using Bootstrap?
-                </div>
+              <div class="d-flex flex-column" style="gap: 10px;" id="messagingFlex">
               </div>
             </div>
             <div class="card shadow-sm m-3 fixed-bottom input-area">
@@ -149,35 +85,43 @@
                   <textarea class="form-control" id="chat-inputArea" placeholder="Type your message here..." rows="4"></textarea>
                 </div>
                 <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button onclick="submitChat()" class="btn btn-primary">Submit</button>
                 </div>
               </div>
             </div>
           </div>
           <div class="container col justify-content-center tab-pane show" id="recipe-gen" role="tabpanel" aria-labelledby="recipe-gen-tab">
             <h1 class="mt-3">Générer une recette</h1>
-            <div class="card shadow-sm m-3 recipe-card">
+            <div class="card shadow-sm recipe-card">
               <div class="card-body">
                 <label for="basic-url" class="form-label">Your Ingredients</label>
-                <div class="input-group mb-3">
+                <div class="input-group">
                   <textarea class="form-control" id="rcp-ing-inputArea" placeholder="Type 'Any' if you don't bother" rows="4">Any</textarea>
                 </div>
-                <div class="form-text" id="basic-addon4">Ingredients comma separated</div>
-                <label for="basic-url" class="form-label">Dietary restrictions</label>
+                <div class="form-text mb-3" id="basic-addon4">Ingredients comma separated</div>
+                <label for="basic-url" class="form-label">Cuisine type</label>
                 <div class="input-group mb-3">
-                  <textarea class="form-control" id="rcp-ing-inputArea" placeholder="Leave empty if you don't bother" rows="4">Any</textarea>
+                  <input type="text" class="form-control" id="rcp-type-inputArea" placeholder="Type 'Any' if you don't bother" rows="4" value="Any"/>
                 </div>
-                <div class="form-text" id="basic-addon4">Restrictions comma separated</div>
+                <label for="basic-url" class="form-label">Dietary restrictions</label>
+                <div class="input-group">
+                  <textarea class="form-control" id="rcp-not-inputArea" placeholder="Leave empty if you don't bother" rows="4">Any</textarea>
+                </div>
+                <div class="form-text mb-3" id="basic-addon4">Restrictions comma separated</div>
                 <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-primary">Generate</button>
+                  <button onclick="generateRecipe()" class="btn btn-primary">Generate</button>
                 </div>
               </div>
+            </div>
+            <div id="recipeArea">
             </div>
           </div>
         </section>
       </div>
     </main>
     <include href="templates/footer.html"></include>
+    <!--script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
     <script src="scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
