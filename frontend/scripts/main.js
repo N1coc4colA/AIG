@@ -8,14 +8,17 @@ const cuisineField = document.getElementById("rcp-type-inputArea");
 const recipeArea = document.getElementById("recipeArea");
 const converter = new showdown.Converter();
 let img_gen_counter = 0;
+let msg_gen_counter = 0;
 
 function submitChat()
 {
     const prompt = chatPromptField.value;
 
+    const msgId = msg_gen_counter++;
     const msg = document.createElement("div");
     msg.classList.add("message", "user");
     msg.innerText = prompt;
+    msg.id = "msg-" + msgId.toString();
     messages.appendChild(msg);
 
     const params = new URLSearchParams({
@@ -38,6 +41,7 @@ function submitChat()
         return true;
     })
     .catch(error => {
+        document.getElementById("msg-" + msgId.toString()).add("failure");
         console.error("Error in request:", error);
         return false;
     });
@@ -67,11 +71,10 @@ function generateImage()
             img.classList.add("img-fluid", "roundit");
             img.src = url;
             img.alt = "AI-Generated Image";
-            img.id = "img-gen-" + img_gen_counter.toString();
+            img.id = "img-gen-" + (img_gen_counter++).toString();
 
             container.appendChild(img);
             imaging.appendChild(container);
-            img_gen_counter++;
         });
 
         return true;

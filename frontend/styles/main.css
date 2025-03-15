@@ -80,3 +80,8 @@
 .recipe-card textarea {
   max-height: 80px;
 }
+
+.failure {
+  background: red !important;
+  color: white;
+}
