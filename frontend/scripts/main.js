@@ -6,9 +6,22 @@ const ingredientsField = document.getElementById("rcp-ing-inputArea");
 const restrictionsField = document.getElementById("rcp-not-inputArea");
 const cuisineField = document.getElementById("rcp-type-inputArea");
 const recipeArea = document.getElementById("recipeArea");
+const errorToast = document.getElementById('errorToast');
+const errorToastText = document.getElementById('errorToastText');
 const converter = new showdown.Converter();
 let img_gen_counter = 0;
 let msg_gen_counter = 0;
+
+
+function showErrorToast(message)
+{
+    console.log("Showing toast");
+
+    errorToastText.innerText = message;
+
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(errorToast);
+    toastBootstrap.show();
+}
 
 function submitChat()
 {
@@ -44,6 +57,18 @@ function submitChat()
     .catch(error => {
         document.getElementById("msg-" + msgId.toString()).classList.add("failure");
         console.error("Error in request:", error);
+
+        let errorMessage = "An error occurred";
+
+        if (error instanceof Error && error.message.startsWith("HTTP error!")) {
+            const statusCode = error.message.split(": ")[1]; // Extract the status code
+            errorMessage += ` (HTTP Status: ${statusCode})`;
+        } else {
+            errorMessage += `: ${error.message}`;
+        }
+
+        showErrorToast(errorMessage);
+
         return false;
     });
 }
@@ -82,6 +107,18 @@ function generateImage()
     })
     .catch(error => {
         console.error("Error in request:", error);
+
+        let errorMessage = "An error occurred";
+
+        if (error instanceof Error && error.message.startsWith("HTTP error!")) {
+            const statusCode = error.message.split(": ")[1]; // Extract the status code
+            errorMessage += ` (HTTP Status: ${statusCode})`;
+        } else {
+            errorMessage += `: ${error.message}`;
+        }
+
+        showErrorToast(errorMessage);
+
         return false;
     });
 }
@@ -111,6 +148,18 @@ function generateRecipe()
     })
     .catch(error => {
         console.error("Error in request:", error);
+
+        let errorMessage = "An error occurred";
+
+        if (error instanceof Error && error.message.startsWith("HTTP error!")) {
+            const statusCode = error.message.split(": ")[1]; // Extract the status code
+            errorMessage += ` (HTTP Status: ${statusCode})`;
+        } else {
+            errorMessage += `: ${error.message}`;
+        }
+
+        showErrorToast(errorMessage);
+
         return false;
     });
 }

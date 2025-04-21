@@ -85,3 +85,7 @@
   background: red !important;
   color: white;
 }
+
+.toast-body {
+  backdrop-filter: blur(5px);
+}

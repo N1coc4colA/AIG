@@ -127,6 +127,17 @@
           </div>
         </section>
       </div>
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <!--img class="rounded me-2"-->
+            <i class="bi bi-exclamation-diamond-fill me-2" style="color: rgb(255, 191, 0);"></i>
+            <strong class="me-auto">An error occurred!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body" id="errorToastText"></div>
+        </div>
+      </div>
     </main>
     <include href="templates/footer.html"></include>
     <!--script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script-->
