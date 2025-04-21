@@ -46,14 +46,23 @@ public class AigController {
                                        @RequestParam(defaultValue = "1") int n,
                                        @RequestParam(defaultValue = "1024") int width,
                                        @RequestParam(defaultValue = "1024") int height) throws IOException {
-        ImageResponse imageResponse = imageService.generateImage(prompt, quality, n, width, height);
+        try {
+            ImageResponse imageResponse = imageService.generateImage(prompt, quality, n, width, height);
+            // Streams to get urls from ImageResponse
+            List<String> imageUrls = imageResponse.getResults().stream()
+                    .map(result -> result.getOutput().getUrl())
+                    .toList();
 
-        // Streams to get urls from ImageResponse
-        List<String> imageUrls = imageResponse.getResults().stream()
-                .map(result -> result.getOutput().getUrl())
-                .toList();
+            return imageUrls;
+        } catch (Exception e) {
+            // Set the HTTP response status to 500 (Internal Server Error) or another appropriate status
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
-        return imageUrls;
+            // Return an HTML error message
+            response.setContentType("text/plain");
+            response.getWriter().write("Error generating images: " + e.getMessage());
+            return null; // Return null since the response is already written
+        }
     }
 
     @GetMapping("recipe")
